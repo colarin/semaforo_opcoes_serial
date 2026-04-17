@@ -1,0 +1,54 @@
+#define led_vermelho 13
+#define led_amarelo 12
+#define led_verde 11
+
+char led;
+void setup() {
+  Serial.begin(9600);
+  pinMode(led_vermelho, OUTPUT);
+  pinMode(led_amarelo, OUTPUT);
+  pinMode(led_verde, OUTPUT);
+  
+}
+
+void loop() {
+  if (Serial.available() > 0){
+    led = Serial.read(); 
+    if(led == 'R' or led == 'r'){
+      digitalWrite(led_vermelho, HIGH);
+      digitalWrite(led_amarelo, LOW);
+      digitalWrite(led_verde, LOW);
+    }
+    else if(led == 'Y' or led == 'y'){
+      digitalWrite(led_vermelho, LOW);
+      digitalWrite(led_amarelo, HIGH);
+      digitalWrite(led_verde, LOW);
+    }
+    else if(led == 'V' or led == 'v'){
+      digitalWrite(led_vermelho, LOW);
+      digitalWrite(led_amarelo, LOW);
+      digitalWrite(led_verde, HIGH);
+    }
+    else if(led == 'A' or led == 'a'){
+      digitalWrite(led_vermelho, LOW);
+      digitalWrite(led_amarelo, LOW);
+      digitalWrite(led_verde, LOW);
+
+      digitalWrite(led_vermelho, HIGH);
+      delay(5000);
+      digitalWrite(led_vermelho, LOW);
+
+      digitalWrite(led_verde, HIGH);
+      delay(5000);
+      digitalWrite(led_verde, LOW);
+
+      digitalWrite(led_amarelo, HIGH);
+      delay(5000);
+      digitalWrite(led_amarelo, LOW);
+
+      digitalWrite(led_vermelho, HIGH);
+      delay(5000);
+      digitalWrite(led_vermelho, LOW);
+    }
+  }
+}
